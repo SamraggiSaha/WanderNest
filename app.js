@@ -43,7 +43,7 @@ app.get("/listings", async(req,res)=>{
     res.render("listings/index.ejs",{alllistings});
 });
 app.get("/listings/new",(req,res)=>{
-    res.render("listings/new.ejs");
+    res.render("listings/new.ejs",{listing:{}});
 });
 app.post("/listings",async(req,res)=>{
     const newListing = new Listing(req.body.listing);

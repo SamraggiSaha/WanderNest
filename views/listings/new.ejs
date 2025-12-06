@@ -1,18 +1,36 @@
 <% layout("/layouts/boilerplate") %>
     <h3>Create a new listing</h3>
     <form method="post" action="/listings">
-        <input name="listing[title]" placeholder="Enter title" type="text">
+         <div>
+            <label for="Title" class="form-label">Title</label>
+            <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control">
+        </div>
         <br><br>
-        <textarea name="listing[description]" placeholder="Enter description" type="text"></textarea>
+        <div>
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" placeholder="Enter description" type="text" class="form-control"><%= listing.description %></textarea>
+        </div>
         <br><br>
-        <input name="listing[image]" placeholder="Enter image URL/Link" type="text">
+        <div>
+            <label for="image" class="form-label">Image</label>
+            <input name="listing[image]" value="<%= listing.image %>" type="text" class="form-control">
+        </div>
         <br><br>
-        <input name="listing[price]" placeholder="Enter price" type="text">
+        <div>
+             <label for="price" class="form-label">Price</label>
+             <input name="listing[price]" value="<%= listing.price %>" type="text" class="form-control">
+        </div>
         <br><br>
-        <input name="listing[location]" placeholder="Enter location" type="text">
+        <div>
+            <label for="location" class="form-label">Location</label>
+            <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control">
+        </div>
         <br><br>
-        <input name="listing[country]" placeholder="Enter country" type="text">
+        <div>
+            <label for="country" class="form-label">Country</label>
+            <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control">
+        </div>
         <br><br>
-        <button>Add</button>
+        <button class="btn btn-dark">Edit</button>
     </form>
 </body>
