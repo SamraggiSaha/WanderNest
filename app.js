@@ -27,8 +27,8 @@ app.get("/",(req,res)=>{
     res.send("working");
 });
  // app.get("/testlisting",async(req,res)=>{
-   //  let sampleListing = new Listing({
-      //  title:"My Villa",
+    //  let sampleListing = new Listing({
+       //  title:"My Villa",
         //description:"A beautiful villa by the sea",
         //price:1200,
         //location:"Calangute,Goa",
