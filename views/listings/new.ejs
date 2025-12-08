@@ -1,32 +1,32 @@
 <% layout("/layouts/boilerplate") %>
     <h3>Create a new listing</h3>
     <form method="post" action="/listings">
-         <div>
+         <div class="mb-3">
             <label for="Title" class="form-label">Title</label>
             <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control">
         </div>
         <br><br>
-        <div>
+        <div mb-3>
             <label for="description" class="form-label">Description</label>
             <textarea name="listing[description]" placeholder="Enter description" type="text" class="form-control"><%= listing.description %></textarea>
         </div>
         <br><br>
-        <div>
+        <div mb-3>
             <label for="image" class="form-label">Image</label>
             <input name="listing[image]" value="<%= listing.image %>" type="text" class="form-control">
         </div>
         <br><br>
-        <div>
+        <div mb-3>
              <label for="price" class="form-label">Price</label>
              <input name="listing[price]" value="<%= listing.price %>" type="text" class="form-control">
         </div>
         <br><br>
-        <div>
+        <div mb-3>
             <label for="location" class="form-label">Location</label>
             <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control">
         </div>
         <br><br>
-        <div>
+        <div mb-3>
             <label for="country" class="form-label">Country</label>
             <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control">
         </div>
