@@ -1,5 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 <h3>Create a new listing</h3>
+<br><br>
 <form method="post" action="/listings">
     <div class="row">
         <div class="col-8 offset-2">
@@ -29,7 +30,7 @@
                 <label for="location" class="form-label">Location</label>
                 <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" placeholder="Kolkata">
             </div>
-            <button type="submit" class="btn btn-dark">Create</button>
+            <button type="submit" class="btn btn-dark add-btn">Create</button>
         </div>
     </div>
 </form>
