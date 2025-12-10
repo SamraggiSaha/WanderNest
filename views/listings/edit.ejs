@@ -1,5 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <body>
+<div class="row">
+    <div class="col-8 offset-2">
     <h3>Edit a listing</h3>
     <br>
     <form method="post" action="/listings/<%= listing._id %>?_method=PUT">
@@ -27,7 +29,9 @@
             <label for="country" class="form-label">Country</label>
             <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control">
          </div>
-        <button class="btn btn-dark">Edit</button>
+        <button class="btn btn-dark edit-btn">Edit</button>
         <br><br>
     </form>
+    </div>
+</div>
 </body>
