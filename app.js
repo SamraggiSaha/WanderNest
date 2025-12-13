@@ -33,10 +33,10 @@ app.get("/",(req,res)=>{
         //price:1200,
         //location:"Calangute,Goa",
        // country:"India",
-  //  });
+   //  });
     //await sampleListing.save();
-    //console.log("Sample listing saved");
-    //res.send("successful testing");
+     //console.log("Sample listing saved");
+     //res.send("successful testing");
 //});
 app.get("/listings", async(req,res)=>{
     const alllistings= await Listing.find({});
