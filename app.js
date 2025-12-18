@@ -29,12 +29,12 @@ app.get("/",(req,res)=>{
  // app.get("/testlisting",async(req,res)=>{
     //  let sampleListing = new Listing({
           //  title:"My Villa",
-                      //description:"A beautiful villa by the sea",
+                 //description:"A beautiful villa by the sea",
         //price:1200,
         //location:"Calangute,Goa",
        // country:"India",
     //  });
-    //await sampleListing.save();
+    // await sampleListing.save();
      //console.log("Sample listing saved");
      //res.send("successful testing");
  //});
