@@ -26,7 +26,7 @@ console.log("server is running on port 8080");
 app.get("/",(req,res)=>{
     res.send("working");
 });
- // app.get("/testlisting",async(req,res)=>{
+ //app.get("/testlisting",async(req,res)=>{
     //  let sampleListing = new Listing({
           //  title:"My Villa",
                  //description:"A beautiful villa by the sea",
