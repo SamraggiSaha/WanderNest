@@ -45,10 +45,14 @@ app.get("/listings", async(req,res)=>{
 app.get("/listings/new",(req,res)=>{
     res.render("listings/new.ejs",{listing:{}});
 });
-app.post("/listings",async(req,res)=>{
+app.post("/listings",async(req,res,next)=>{
+    try{
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
+   }catch(err){
+    next(err);
+   } 
 });
 app.get("/listings/:id",async(req,res)=>{
     const {id}=req.params;
@@ -71,4 +75,7 @@ app.delete("/listings/:id", async(req,res)=>{
     const deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     res.redirect("/listings");
+});
+app.use((err,req,res,next)=>{
+    res.send("something went wrong");
 });
