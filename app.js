@@ -6,7 +6,7 @@ const path = require('path');
 const methodOverride=require('method-override');
 const ejsMate = require("ejs-mate");
 const wrapAsync = require('./utils/wrapAsync.js');
-const ExpressError = require('./utils/ExpressError.js');
+const ExpressError = require('./utils/ExpressError.js')
 main().then(()=>{
     console.log("connected to db succesfully");
 })
@@ -46,6 +46,9 @@ app.get("/listings/new",(req,res)=>{
     res.render("listings/new.ejs",{listing:{}});
 });
 app.post("/listings",wrapAsync(async(req,res,next)=>{
+    if(! req.body.listing){
+        throw new ExpressError(400,"Send valid data for listing");
+    }
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -63,6 +66,9 @@ app.get("/listing/:id/edit", async (req,res)=>{
     res.render("listings/edit.ejs",{listing});
 });
 app.put("/listings/:id", wrapAsync(async(req,res)=>{
+    if(! req.body.listing){
+        throw new ExpressError(400,"Send valid data for listing");
+    }
     let {id}=req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
     res.redirect(`/listings/${id}`);
@@ -73,13 +79,15 @@ app.delete("/listings/:id", wrapAsync(async(req,res)=>{
     console.log(deletedListing);
     res.redirect("/listings");
 }));
-app.use((req,res,next)=>{
-    next(new ExpressError(404,"Page Not Found"));
+app.all("/{*any}", (req, res, next) => { // Or use "/{*any}" for more explicit naming
+    next(new ExpressError(404, "Page Not Found"));
 });
+
+
 app.use((err,req,res,next)=>{
     const {statusCode=500,message = "Something went wrong !"} = err;
     res.status(statusCode).send(message);
 });
-app.listen(8080,(req,res)=>{
-console.log("server is running on port 8080");
+app.listen(8080, () => {
+    console.log("Server running on port 8080");
 });
