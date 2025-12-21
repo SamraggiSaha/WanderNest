@@ -82,11 +82,9 @@ app.delete("/listings/:id", wrapAsync(async(req,res)=>{
 app.all("/{*any}", (req, res, next) => { // Or use "/{*any}" for more explicit naming
     next(new ExpressError(404, "Page Not Found"));
 });
-
-
 app.use((err,req,res,next)=>{
     const {statusCode=500,message = "Something went wrong !"} = err;
-    res.status(statusCode).send(message);
+    res.status(statusCode).render("error.ejs",{err});
 });
 app.listen(8080, () => {
     console.log("Server running on port 8080");
