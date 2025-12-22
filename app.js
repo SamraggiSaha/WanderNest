@@ -6,7 +6,8 @@ const path = require('path');
 const methodOverride=require('method-override');
 const ejsMate = require("ejs-mate");
 const wrapAsync = require('./utils/wrapAsync.js');
-const ExpressError = require('./utils/ExpressError.js')
+const ExpressError = require('./utils/ExpressError.js');
+const { listingSchema } = require('./schema.js');
 main().then(()=>{
     console.log("connected to db succesfully");
 })
@@ -19,9 +20,11 @@ async function main(){
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"/views"));
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,"/public")));
 app.engine("ejs",ejsMate);
+
 
 app.get("/",(req,res)=>{
     res.send("working");
@@ -46,8 +49,10 @@ app.get("/listings/new",(req,res)=>{
     res.render("listings/new.ejs",{listing:{}});
 });
 app.post("/listings",wrapAsync(async(req,res,next)=>{
-    if(! req.body.listing){
-        throw new ExpressError(400,"Send valid data for listing");
+    let result = listingSchema.validate(req.body);
+    console.log(result);
+    if(result.error){
+        throw new ExpressError(400,result.error);
     }
     const newListing = new Listing(req.body.listing);
     await newListing.save();
