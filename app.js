@@ -40,7 +40,7 @@ let {error} = listingSchema.validate(req.body);
         next();
     }
 }
- //app.get("/testlisting",async(req,res)=>{
+ // app.get("/testlisting",async(req,res)=>{
     //  let sampleListing = new Listing({
           //  title:"My Villa",
                  //description:"A beautiful villa by the sea",
