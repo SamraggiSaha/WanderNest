@@ -47,7 +47,7 @@ let {error} = listingSchema.validate(req.body);
         // price:1200,
         //location:"Calangute,Goa",
        // country:"India",
-    //  });
+    // });
     // await sampleListing.save();
      //console.log("Sample listing saved");
      //res.send("successful testing");
