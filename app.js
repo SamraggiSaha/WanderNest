@@ -44,10 +44,10 @@ let {error} = listingSchema.validate(req.body);
     //  let sampleListing = new Listing({
           //  title:"My Villa",
                  //description:"A beautiful villa by the sea",
-        // price:1200,
+        //\price:1200,
         //location:"Calangute,Goa",
        // country:"India",
-    // });
+    //});
     // await sampleListing.save();
      //console.log("Sample listing saved");
      //res.send("successful testing");
