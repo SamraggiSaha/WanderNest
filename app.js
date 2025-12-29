@@ -8,6 +8,7 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require('./utils/wrapAsync.js');
 const ExpressError = require('./utils/ExpressError.js');
 const { listingSchema } = require('./schema.js');
+const Review= require('./models/review.js');
 main().then(()=>{
     console.log("connected to db succesfully");
 })
@@ -89,6 +90,15 @@ app.delete("/listings/:id", wrapAsync(async(req,res)=>{
     const deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     res.redirect("/listings");
+}));
+app.post("/listings/:id/review", wrapAsync(async(req,res)=>{
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review);
+    listing.reviews.push(newReview);
+    await listing.save();
+    await newReview.save();
+    console.log(newReview);
+    res.redirect(`/listings/${listing._id}`);
 }));
 app.all("/{*any}", (req, res, next) => { // Or use "/{*any}" for more explicit naming
     next(new ExpressError(404, "Page Not Found"));
