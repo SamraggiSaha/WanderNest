@@ -53,7 +53,7 @@ let {error} = reviewSchema.validate(req.body);
     }
 }
  // app.get("/testlisting",async(req,res)=>{
-    //  let sampleListing = new Listing({
+    // let sampleListing = new Listing({
           // title:"My Villa",
                  //description:"A beautiful villa by the sea",
         //price:1200,
