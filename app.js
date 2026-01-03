@@ -102,6 +102,7 @@ app.delete("/listings/:id", wrapAsync(async(req,res)=>{
     console.log(deletedListing);
     res.redirect("/listings");
 }));
+//review
 app.post("/listings/:id/review",validateReview,wrapAsync(async(req,res)=>{
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
@@ -110,6 +111,12 @@ app.post("/listings/:id/review",validateReview,wrapAsync(async(req,res)=>{
     await newReview.save();
     console.log(newReview);
     res.redirect(`/listings/${listing._id}`);
+}));
+app.delete("/listings/:id/reviews/:reviewId",wrapAsync(async(req,res)=>{
+    let {id,reviewId}= req.params;
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
 }));
 app.all("/{*any}", (req, res, next) => { // Or use "/{*any}" for more explicit naming
     next(new ExpressError(404, "Page Not Found"));
