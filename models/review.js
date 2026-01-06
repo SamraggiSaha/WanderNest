@@ -1,6 +1,12 @@
+const { name } = require('ejs');
+const { required } = require('joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const reviewSchema = new Schema({
+    name:{
+        type:String,
+        required:true
+    },
     comment:String,
     rating:{
         type:Number,
