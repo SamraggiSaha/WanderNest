@@ -43,7 +43,7 @@ app.get("/",(req,res)=>{
     // await sampleListing.save();
     // console.log("Sample listing saved");
       // res.send("successful testing");
- //  });
+ //});
 app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);
 //review
