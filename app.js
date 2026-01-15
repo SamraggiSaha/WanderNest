@@ -32,7 +32,11 @@ app.engine("ejs",ejsMate);
 const sessionOptions = {
     secret:"mysecretsessioncode",
     resave:false,
-    saveUnitialized:true
+    saveUnitialized:true,
+    cookie:{
+        expires:Date.now() + 7*24*60*60*1000,
+        maxAge:7*24*60*60*1000,
+    },
 };
 app.use(session(sessionOptions));
 app.get("/",(req,res)=>{
