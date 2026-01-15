@@ -11,6 +11,7 @@ const { listingSchema, reviewSchema } = require('./schema.js');
 const Review= require('./models/review.js');
 const listings=require('./routes/listing.js')
 const reviews=require('./routes/review.js');
+const session = require('express-session');
 main().then(()=>{
     console.log("connected to db succesfully");
 })
@@ -28,7 +29,12 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,"/public")));
 app.engine("ejs",ejsMate);
 
-
+const sessionOptions = {
+    secret:"mysecretsessioncode",
+    resave:false,
+    saveUnitialized:true
+};
+app.use(session(sessionOptions));
 app.get("/",(req,res)=>{
     res.send("working");
 });
