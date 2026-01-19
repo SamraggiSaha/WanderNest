@@ -60,12 +60,13 @@ app.use((req,res,next)=>{
         //location:"Calangute,Goa",
        // country:"India",
     //});
-    // await sampleListing.save();
-    // console.log("Sample listing saved");
+    //  await sampleListing.save();
+    //  console.log("Sample listing saved");
       // res.send("successful testing");
  //});
 app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);
+
 //review
 //post review route 
 app.all("/{*any}", (req, res, next) => { // Or use "/{*any}" for more explicit naming
