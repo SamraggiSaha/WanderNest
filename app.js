@@ -61,7 +61,7 @@ app.use((req,res,next)=>{
        // country:"India",
     //});
     //  await sampleListing.save();
-    //  console.log("Sample listing saved");
+    // console.log("Sample listing saved");
       // res.send("successful testing");
  //});
 app.use("/listings",listings);
