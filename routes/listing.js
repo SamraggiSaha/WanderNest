@@ -23,7 +23,7 @@ router.get("/", wrapAsync(async(req,res)=>{
 router.get("/new",isLoggedin,(req,res)=>{
     res.render("listings/new.ejs",{listing:{}});
 });
-router.post("/",validateListing,wrapAsync(async(req,res,next)=>{
+router.post("/",validateListing,isLoggedin,wrapAsync(async(req,res,next)=>{
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     req.flash("success","New listing Created Successfully");
