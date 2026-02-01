@@ -58,7 +58,7 @@ router.put("/:id",validateListing,isLoggedin,wrapAsync(async(req,res)=>{
     req.flash("success","Listing Updated");
     res.redirect(`/listings/${id}`);
 }));
-router.delete("/:id", wrapAsync(async(req,res)=>{
+router.delete("/:id",isLoggedin,wrapAsync(async(req,res)=>{
     let {id} = req.params;
     const deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
