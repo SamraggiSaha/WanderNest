@@ -59,6 +59,7 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash("error");
     console.log(res.locals.success);
     console.log(res.locals.error);
+    res.locals.currentUser = req.user;
     next();
 });
  // app.get("/testlisting",async(req,res)=>{
