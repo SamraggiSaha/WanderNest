@@ -82,7 +82,7 @@ app.use((req,res,next)=>{
     //let registeredUser = await User.register(fakeUser,"helloo world");
     //console.log(registeredUser);
     //res.send(registeredUser);
- //});
+ // });
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
