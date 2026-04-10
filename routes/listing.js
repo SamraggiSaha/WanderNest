@@ -5,7 +5,7 @@ const wrapAsync = require('../utils/wrapAsync.js');
 const ExpressError = require('../utils/ExpressError.js');
 const { listingSchema, reviewSchema } = require('../schema.js');
 const {isLoggedin , isOwner} = require('../middleware.js');
-
+const {validateListing} = require('../middleware.js');
 router.get("/", wrapAsync(async(req,res)=>{
     const alllistings= await Listing.find({});
     res.render("listings/index.ejs",{alllistings});

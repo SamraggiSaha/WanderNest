@@ -1,6 +1,6 @@
 const Listing = require("./models/listing.js");
-const ExpressError = require('../utils/ExpressError.js');
-const { listingSchema, reviewSchema } = require('../schema.js');
+const ExpressError = require('./utils/ExpressError.js');
+const { listingSchema, reviewSchema } = require('./schema.js');
 module.exports.isLoggedin = (req,res,next)=>{
     if(!req.isAuthenticated()){
         req.session.redirectUrl = req.originalUrl;
@@ -27,6 +27,17 @@ module.exports.isOwner = async (req,res,next)=>{
 }
 module.exports.validateListing =(req,res,next)=>{
 let {error} = listingSchema.validate(req.body);
+    console.log(error);
+    if(error){
+        let errMsg = error.details.map((el)=>el.message).join(",");
+        throw new ExpressError(400,errMsg);
+    }
+    else{
+        next();
+    }
+}
+module.exports.validateReview=(req,res,next)=>{
+let {error} = reviewSchema.validate(req.body);
     console.log(error);
     if(error){
         let errMsg = error.details.map((el)=>el.message).join(",");
