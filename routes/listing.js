@@ -5,17 +5,7 @@ const wrapAsync = require('../utils/wrapAsync.js');
 const ExpressError = require('../utils/ExpressError.js');
 const { listingSchema, reviewSchema } = require('../schema.js');
 const {isLoggedin , isOwner} = require('../middleware.js');
-const validateListing =(req,res,next)=>{
-let {error} = listingSchema.validate(req.body);
-    console.log(error);
-    if(error){
-        let errMsg = error.details.map((el)=>el.message).join(",");
-        throw new ExpressError(400,errMsg);
-    }
-    else{
-        next();
-    }
-}
+
 router.get("/", wrapAsync(async(req,res)=>{
     const alllistings= await Listing.find({});
     res.render("listings/index.ejs",{alllistings});
