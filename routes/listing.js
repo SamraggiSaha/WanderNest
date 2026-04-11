@@ -6,10 +6,10 @@ const ExpressError = require('../utils/ExpressError.js');
 const { listingSchema, reviewSchema } = require('../schema.js');
 const {isLoggedin , isOwner} = require('../middleware.js');
 const {validateListing} = require('../middleware.js');
-router.get("/", wrapAsync(async(req,res)=>{
-    const alllistings= await Listing.find({});
-    res.render("listings/index.ejs",{alllistings});
-}));
+const ListingController = require('../controllers/listing.js');
+//Index route
+router.get("/", wrapAsync(ListingController.index));
+//New route
 router.get("/new",isLoggedin,(req,res)=>{
     res.render("listings/new.ejs",{listing:{}});
 });
