@@ -7,25 +7,24 @@ const { listingSchema, reviewSchema } = require('../schema.js');
 const {isLoggedin , isOwner} = require('../middleware.js');
 const {validateListing} = require('../middleware.js');
 const ListingController = require('../controllers/listing.js');
-//Index route
-router.get("/", wrapAsync(ListingController.index));
+//Index route & create route together
+router.route("/")
+  .get(wrapAsync(ListingController.index))
+  .post(validateListing, isLoggedin, wrapAsync(ListingController.createListing));
 
 //New route
-router.get("/new",isLoggedin,ListingController.RenderNewForm);
+router.get("/new", isLoggedin, ListingController.RenderNewForm);
 
-//create route
-router.post("/",validateListing,isLoggedin,wrapAsync(ListingController.createListing));
+//show route, update route and delete route together
+router.route("/:id")
+  .get(wrapAsync(ListingController.showListing))
+  .put(validateListing, isLoggedin, isOwner, wrapAsync(ListingController.updateListing))
+  .delete(isLoggedin, isOwner, wrapAsync(ListingController.destroyListing));
 
-//show route
-router.get("/:id",wrapAsync(ListingController.showListing));
 
 //Edit route
 router.get("/:id/edit",isLoggedin,isOwner,wrapAsync(ListingController.Editlisting));
 
-//update route
-router.put("/:id",validateListing,isLoggedin,isOwner,wrapAsync(ListingController.updateListing));
 
-//delete route
-router.delete("/:id",isLoggedin,isOwner,wrapAsync(ListingController.destroyListing));
 
 module.exports = router;
